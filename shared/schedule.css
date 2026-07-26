@@ -186,9 +186,9 @@ section.day.on{display:block}
 /* ── tabul +info ─────────────────────────── */
 .info-grid{display:grid;grid-template-columns:1fr;gap:14px;padding-top:8px}
 .iblock h3{font-weight:700;font-size:19px;margin:0;letter-spacing:-.01em}
-.iblock.acc>h3{cursor:pointer;padding:10px 0;border-bottom:1px solid var(--line-soft);user-select:none}
-.iblock.acc>h3::before{content:'▸  ';color:var(--amber);font-size:.72em}
-.iblock.acc.open>h3::before{content:'▾  '}
+.iblock.acc>h3{cursor:pointer;padding:10px 28px 10px 0;border-bottom:1px solid var(--line-soft);user-select:none;position:relative}
+.iblock.acc>h3::after{content:'▾';position:absolute;right:4px;top:50%;transform:translateY(-50%);color:var(--amber);font-size:1em;transition:transform .2s ease}
+.iblock.acc.open>h3::after{transform:translateY(-50%) rotate(180deg)}
 .iblock.acc:not(.open)>:not(:first-child){display:none}
 .iblock.acc.open>h3{margin-bottom:10px}
 .irow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--line-soft);font-size:14px}
