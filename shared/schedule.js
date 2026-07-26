@@ -655,7 +655,9 @@ function selectDay(id,scroll){
     if(window.scrollY>y) window.scrollTo({top:y,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
   }
   applyFilters();
+  document.dispatchEvent(new CustomEvent('daychange',{detail:id})); /* pt. live.js (vibe) */
 }
+window.selectDay=selectDay; /* live.js (vibe) e cross-origin: are nevoie de selectDay global */
 
 /* ── "acum": marcaje pe ora reală ───────── */
 const fab=document.getElementById('fab');

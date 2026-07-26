@@ -279,3 +279,44 @@ section.day.on{display:block}
   .info-grid{grid-template-columns:1fr 1fr}
   .iblock.wide{grid-column:1/-1}
 }
+
+/* ── vibe check (adus din programul mare, pentru paginile trupelor) ── */
+/* ── jurnal foto, anunțuri, feedback (live) ── */
+/* ── vibe check: tabul cu poze ── */
+.daychip.vibe{position:relative;color:var(--amber)}
+.daychip.vibe .dn{font-size:17px;padding-top:3px}
+.daychip.vibe[aria-selected="true"]{background:var(--amber);color:#1c1d20}
+.daychip.vibe .vdot{position:absolute;top:4px;right:4px;width:6px;height:6px;background:var(--amber)}
+.daychip.vibe[aria-selected="true"] .vdot{background:#1c1d20}
+.vsep{display:flex;align-items:center;gap:10px;margin:22px 0 12px;color:var(--muted)}
+.vsep::before,.vsep::after{content:"";flex:1;border-top:1px solid var(--line)}
+.vsep span{font-family:var(--mono);font-size:12px}
+.vitem{margin:0 0 18px}
+.vitem img{display:block;width:100%;background:var(--panel);cursor:pointer}
+.vitem video{display:block;width:100%;background:var(--panel)}
+#vsheet video{max-width:100%;max-height:56vh;background:var(--panel);margin-top:26px}
+.vmeta{margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.vskel{background:var(--panel);margin:0 0 14px}
+.vfirst{display:block;width:100%;background:var(--red);color:#fff;font-weight:700;font-size:16px;padding:16px;margin-top:8px}
+#vsheet{position:fixed;inset:0;z-index:130;background:var(--ground);display:flex;flex-direction:column;gap:14px;padding:18px;overflow-y:auto}
+#vsheet .vx{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:18px;color:var(--muted);padding:6px}
+#vsheet .vx:hover{color:var(--fg)}
+#vsheet img{max-width:100%;max-height:56vh;object-fit:contain;background:var(--panel);margin-top:26px}
+#vsheet .vname{background:var(--panel);border:1px solid var(--line);color:var(--fg);padding:11px 12px;font:inherit;font-size:15px}
+#vsheet .vpost{background:var(--red);color:#fff;font-weight:700;font-size:16px;padding:14px}
+#vsheet .vpost:disabled{opacity:.6}
+#lbox{position:fixed;inset:0;z-index:120;background:rgba(10,10,12,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px}
+.vconsent-bd{position:fixed;inset:0;z-index:2200;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:20px}
+.vconsent{max-width:440px;width:100%;max-height:86vh;overflow-y:auto;background:var(--panel);border-top:3px solid var(--red);padding:20px}
+.vconsent h3{margin:0 0 12px;font-size:16px}
+.vconsent p{font-size:13px;color:var(--muted);line-height:1.55;margin:0 0 12px}
+.vconsent-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+.vconsent-btns button{font-family:inherit;font-size:14px;padding:10px 18px;cursor:pointer;border:1px solid var(--line);background:none;color:var(--fg)}
+.vconsent-btns .vc-yes{background:var(--red);color:#fff;border-color:var(--red);font-weight:600}
+#lbox[hidden]{display:none}
+#lbox img{max-width:94vw;max-height:74vh;object-fit:contain;background:var(--panel-2)}
+#lbox .lx{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:18px;color:var(--muted);padding:6px}
+#lbox .lx:hover{color:var(--fg)}
+#lbox .lbar{display:flex;gap:8px}
+#lbox .lbtn{border:1px solid var(--line);padding:9px 16px;font-weight:600;font-size:13.5px;color:var(--fg)}
+#lbox .lbtn:hover{border-color:var(--amber);color:var(--amber)}
