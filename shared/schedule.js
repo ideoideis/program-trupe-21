@@ -167,7 +167,8 @@ function evHtml(ev,dayId){
   let x='';
   if(det){
     const rows=det.rows.map(r=>`<div class="xrow"><span class="xa">${r[0]}</span><span class="xb">${r[1]}</span></div>`).join('');
-    x=`<button class="xbtn" data-x>▸ ${det.label}</button><div class="xlist">${rows}</div>`;
+    const rep=(AUD.lockTrupa && ev.title==='ateliere arte alăturate' && typeof REPARTIZARE!=='undefined' && REPARTIZARE[AUD.lockTrupa])?`<button class="xbtn" data-rep style="display:block;margin-top:10px">vezi cine e la ce atelier →</button>`:'';
+    x=`<button class="xbtn" data-x>▸ ${det.label}</button><div class="xlist">${rows}${rep}</div>`;
   }
   let subsArr=(ev.sub||[]).slice();
   if(AUD.lockTrupa && ev.title==='ateliere teatru tânăr' && typeof ATELIERE_TT!=='undefined' && typeof TRUPE_IDS!=='undefined'){
@@ -376,6 +377,13 @@ infoS.innerHTML=`
     ${(AUD.lockTrupa && INFO.spectacole && typeof TRUPE_INFO!=='undefined' && TRUPE_INFO[AUD.lockTrupa])?`<div class="iblock wide acc">
       <h3>spectacolul vostru</h3>
       <div class="ti-body">${trupaFisa(AUD.lockTrupa)}</div>
+    </div>`:''}
+    ${(AUD.lockTrupa && typeof REPARTIZARE!=='undefined' && REPARTIZARE[AUD.lockTrupa])?`<div class="iblock wide acc" id="repartizare">
+      <h3>repartizarea pe ateliere de arte alăturate</h3>
+      <div class="tscroll"><table class="ttable">
+        <tr><th>membru</th><th>atelier</th></tr>
+        ${REPARTIZARE[AUD.lockTrupa][1].map(m=>`<tr><td>${esc(m[0])}</td><td><small>${esc(m[1])}</small></td></tr>`).join('')}
+      </table></div>
     </div>`:''}
     ${(!AUD.lockTrupa && INFO.spectacole && typeof TRUPE_INFO!=='undefined' && typeof TRUPE_IDS!=='undefined')?`<div class="iblock wide acc">
       <h3>spectacolele trupelor</h3>
@@ -618,6 +626,12 @@ daysEl.addEventListener('click',e=>{
   const b=e.target.closest('[data-x]'); if(!b)return;
   const l=b.nextElementSibling; const open=l.classList.toggle('open');
   b.textContent=(open?'▾ ':'▸ ')+b.textContent.slice(2);
+});
+/* buton „vezi cine e la ce atelier" -> du-te la +info + deschide tabelul */
+daysEl.addEventListener('click',e=>{
+  if(!e.target.closest('[data-rep]'))return;
+  selectDay('info',true);
+  setTimeout(()=>{const el=document.getElementById('repartizare');if(el){el.classList.add('open');el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}},80);
 });
 
 /* schimbarea zilei */
