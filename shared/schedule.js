@@ -144,7 +144,7 @@ function detailRows(ev){
   if(ev.title==='ateliere teatru tânăr' && typeof ATELIERE_TT!=='undefined'){
     let tt=ATELIERE_TT;
     if(AUD.lockTrupa && typeof TRUPE_IDS!=='undefined')
-      tt=tt.filter(r=>r[0]===TRUPE_IDS[AUD.lockTrupa]);
+      tt=tt.filter(r=>r[0]===TRUPE_IDS[AUD.lockTrupa] || r[0]==='Train the Coordinators');
     rows=tt.map(r=>[`${r[0]} · ${r[1]}`, r[2]+(r[3]?' · '+r[3]:'')]).concat(needs&&typeof TT_NEEDS!=='undefined'?[['necesar / atelier',TT_NEEDS]]:[]);
   }
   else if(ev.title==='ateliere arte alăturate' && typeof ARTE_ALATURATE!=='undefined')
