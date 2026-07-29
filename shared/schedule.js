@@ -148,7 +148,7 @@ function detailRows(ev){
     rows=tt.map(r=>[`${r[0]} · ${r[1]}`, r[2]+(r[3]?' · '+r[3]:'')]).concat(needs&&typeof TT_NEEDS!=='undefined'?[['necesar / atelier',TT_NEEDS]]:[]);
   }
   else if(ev.title==='ateliere arte alăturate' && typeof ARTE_ALATURATE!=='undefined')
-    rows=ARTE_ALATURATE.map(r=>[`${r[0]} · ${r[1]}`, roomClean(r[2])]);
+    rows=ARTE_ALATURATE.map(r=>[`${r[0]} · ${r[1]}`, roomClean(r[2])]).concat(AUD.lockTrupa==='alexandria'?[['Poziția Zero · Noreen Elamir & Andrei Dumitrescu','sala 4']]:[]);
   const lg=(typeof LOGISTICS!=='undefined')?LOGISTICS[ev.title]:null;
   if(lg){
     if(lg.n)rows.push(['participanți',lg.n]);
