@@ -123,6 +123,7 @@ function nearestDay(){
 /* ── banda de zile ──────────────────────── */
 const railEl=document.getElementById('rail');
 const daysEl=document.getElementById('days');
+(function(){const w=daysEl&&daysEl.closest('.wrap');if(w)w.insertAdjacentHTML('afterbegin','<div class="waterbanner">💧 nu uita să bei apă!</div>');})();
 DAYS_A.forEach(d=>{
   const b=document.createElement('button');
   b.className='daychip'; b.dataset.day=d.id; b.setAttribute('aria-selected','false');
