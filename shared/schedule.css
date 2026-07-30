@@ -322,3 +322,11 @@ section.day.on{display:block}
 #lbox .lbtn:hover{border-color:var(--amber);color:var(--amber)}
 
 .waterbanner{background:rgba(255,196,46,.12);border:1px solid rgba(255,196,46,.55);color:var(--fg);padding:11px 14px;font-size:14.5px;font-weight:500;margin:0 0 16px;display:flex;align-items:center;gap:9px}
+
+.clap{position:fixed;z-index:3000;pointer-events:none;font-size:22px;animation:clapUp .95s ease-out forwards}
+@keyframes clapUp{0%{opacity:0;transform:translateY(0) scale(.6)}18%{opacity:1}100%{opacity:0;transform:translateY(-72px) scale(1.15)}}
+
+.nextup{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:0 0 14px;padding:9px 12px;border:1px solid var(--line-soft);background:var(--panel);line-height:1.4}
+.nextup[hidden]{display:none}
+.nextup b{color:var(--amber);font-weight:600}
+.nextup .nu-in{color:var(--fg)}

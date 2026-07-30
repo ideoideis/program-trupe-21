@@ -123,7 +123,14 @@ function nearestDay(){
 /* ── banda de zile ──────────────────────── */
 const railEl=document.getElementById('rail');
 const daysEl=document.getElementById('days');
-(function(){const w=daysEl&&daysEl.closest('.wrap');if(w)w.insertAdjacentHTML('afterbegin','<div class="waterbanner">💧 nu uita să bei apă!</div>');})();
+(function(){const w=daysEl&&daysEl.closest('.wrap');if(w)w.insertAdjacentHTML('afterbegin','<div class="waterbanner">💧 nu uita să bei apă!</div><div class="nextup" hidden></div>');
+  function _hotWater(){const el=document.querySelector('.waterbanner');if(!el)return;const mm=((roNow().mins%1440)+1440)%1440;el.textContent=(mm>=720&&mm<960)?'🔥 caniculă la Alexandria · bea apă!':'💧 nu uita să bei apă!';}
+  function _fmtIn(d){return d<60?('peste '+d+' min'):('peste '+Math.floor(d/60)+' h'+(d%60?' '+(d%60)+' min':''));}
+  function _next(){const el=document.querySelector('.nextup');if(!el)return;const n=roNow();const day=(n.day&&typeof DAYS!=='undefined')?DAYS.find(d=>d.id===n.day):null;if(!day){el.hidden=true;return;}const lk=AUD.lockTrupa;const it=day.events.filter(e=>(e.k==='t'||e.k==='m')&&(!e.trupa||e.trupa===lk)).map(e=>({m:mins(e.ts||e.t),t:e.t,label:e.k==='t'?('transport · '+e.route):(e.meal+' · '+e.loc)})).filter(x=>x.m>n.mins).sort((a,b)=>a.m-b.m);if(!it.length){el.hidden=true;return;}const x=it[0];el.hidden=false;el.innerHTML='<b>următorul</b> · '+x.label+' · '+x.t+' · <span class="nu-in">'+_fmtIn(x.m-n.mins)+'</span>';}
+  function _tick(){_hotWater();_next();} _tick(); setInterval(_tick,30000);
+  function _clap(x,y){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;for(let i=0;i<5;i++){const c=document.createElement('span');c.className='clap';c.textContent='👏';c.style.left=(x+(Math.random()*40-20))+'px';c.style.top=(y-8)+'px';c.style.animationDelay=(i*55)+'ms';document.body.appendChild(c);setTimeout(()=>c.remove(),1200+i*55);}}
+  document.addEventListener('click',_e=>{if(_e.target.closest('button,a,input,summary,[data-x],.pbtn,.pzbtn,.xbtn'))return;const card=_e.target.closest('.ev');if(card&&/spectacol/i.test(card.textContent))_clap(_e.clientX,_e.clientY);});
+})();
 DAYS_A.forEach(d=>{
   const b=document.createElement('button');
   b.className='daychip'; b.dataset.day=d.id; b.setAttribute('aria-selected','false');
