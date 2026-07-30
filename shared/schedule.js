@@ -123,8 +123,8 @@ function nearestDay(){
 /* ── banda de zile ──────────────────────── */
 const railEl=document.getElementById('rail');
 const daysEl=document.getElementById('days');
-(function(){const w=daysEl&&daysEl.closest('.wrap');if(w)w.insertAdjacentHTML('afterbegin','<div class="waterbanner">💧 nu uita să bei apă!</div><div class="nextup" hidden></div>');
-  function _hotWater(){const el=document.querySelector('.waterbanner');if(!el)return;const mm=((roNow().mins%1440)+1440)%1440;el.textContent=(mm>=720&&mm<960)?'🔥 caniculă la Alexandria · bea apă!':'💧 nu uita să bei apă!';}
+(function(){const w=daysEl&&daysEl.closest('.wrap');if(w)w.insertAdjacentHTML('afterbegin','<div class="waterbanner" style="display:none"></div><div class="nextup" hidden></div>');
+  function _hotWater(){const el=document.querySelector('.waterbanner');if(!el)return;const mm=((roNow().mins%1440)+1440)%1440;if(mm>=720&&mm<960){el.style.display='flex';el.textContent='🔥 caniculă la Alexandria · bea apă!';}else{el.style.display='none';}}
   function _fmtIn(d){return d<60?('peste '+d+' min'):('peste '+Math.floor(d/60)+' h'+(d%60?' '+(d%60)+' min':''));}
   function _next(){const el=document.querySelector('.nextup');if(!el)return;const n=roNow();const day=(n.day&&typeof DAYS!=='undefined')?DAYS.find(d=>d.id===n.day):null;if(!day){el.hidden=true;return;}const lk=AUD.lockTrupa;const it=day.events.filter(e=>(e.k==='t'||e.k==='m')&&(!e.trupa||e.trupa===lk)).map(e=>({m:mins(e.ts||e.t),t:e.t,label:e.k==='t'?('transport · '+e.route):(e.meal+' · '+e.loc)})).filter(x=>x.m>n.mins).sort((a,b)=>a.m-b.m);if(!it.length){el.hidden=true;return;}const x=it[0];el.hidden=false;el.innerHTML='<b>următorul</b> · '+x.label+' · '+x.t+' · <span class="nu-in">'+_fmtIn(x.m-n.mins)+'</span>';}
   function _tick(){_hotWater();_next();} _tick(); setInterval(_tick,30000);
