@@ -192,8 +192,9 @@ function evHtml(ev,dayId){
      && typeof TRUPE_INFO!=='undefined' && TRUPE_INFO[ev.trupa]){
     tinfo=`<button class="xbtn" data-x>▸ despre spectacol & trupă</button><div class="xlist">${trupaFisa(ev.trupa)}</div>`;
   }
-  return `<article class="ev${ev.c?' compact':''}" data-eid="${eid}" data-cat="${ev.cat||'alt'}"${ev.c?' data-tech="1"':''}${ev.trupa?` data-trupa="${ev.trupa}"`:''} data-s="${mins(ev.t)}"${ev.e?` data-e="${mins(ev.e)}"`:''} data-search="${esc(search)}" style="--cat:${cat.color}">
-    <div class="tcol"><div class="t1">${ev.t}</div>${ev.e?`<div class="t2">${ev.e}</div>`:''}</div>
+  const _tt=(AUD.lockTrupa&&ev.trupaStart&&ev.trupaStart[AUD.lockTrupa])||ev.t;
+  return `<article class="ev${ev.c?' compact':''}" data-eid="${eid}" data-cat="${ev.cat||'alt'}"${ev.c?' data-tech="1"':''}${ev.trupa?` data-trupa="${ev.trupa}"`:''} data-s="${mins(_tt)}"${ev.e?` data-e="${mins(ev.e)}"`:''} data-search="${esc(search)}" style="--cat:${cat.color}">
+    <div class="tcol"><div class="t1">${_tt}</div>${ev.e?`<div class="t2">${ev.e}</div>`:''}</div>
     <div>
       <div class="title">${ev.title}<span class="nowtag" hidden>acum</span></div>
       ${locline}${subs}${x}${tinfo}
