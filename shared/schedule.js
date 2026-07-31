@@ -40,6 +40,8 @@ const lu=document.getElementById('lastupd'); if(lu)lu.textContent=LAST_UPDATED;
 
 /* ── ce evenimente intră în programul acestui public ── */
 function includeEvent(ev){
+  /* trupe: nimic de la Kaufland (activități Art&Play/comunitate, nu ale trupelor) */
+  if(/kaufland/i.test((ev.loc||'')+' '+(ev.route||''))) return false;
   if(ev.k==='e'){
     const t=ev.title||'';
     /* excepții punctuale, pe titlu: scoase sau băgate indiferent de categorie */
